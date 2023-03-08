@@ -21,9 +21,17 @@ model Article {
 }
 
 model Users {
-  @@map("users")
   id       Int    @id @default(autoincrement())
   name     String
   email    String @unique
   password String
+
+  @@map("users")
+}
+
+model Invoice {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  @@map("invoice")
 }
