@@ -19,11 +19,11 @@ export class InvoiceService {
     return this.prisma.invoice.findUnique({ where: { id } });
   }
 
-  update(id: number, updateInvoiceDto: UpdateInvoiceDto) {
-    return `This action updates a #${id} invoice`;
-  }
+  // update(id: number, updateInvoiceDto: UpdateInvoiceDto) {
+  //   return `This action updates a #${id} invoice`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} invoice`;
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} invoice`;
+  // }
 }

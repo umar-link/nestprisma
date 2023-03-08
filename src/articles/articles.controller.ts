@@ -6,8 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
@@ -15,6 +22,8 @@ import { ArticleEntity } from './entities/article.entity';
 
 @Controller('articles')
 @ApiTags('articles')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
@@ -24,8 +33,8 @@ export class ArticlesController {
     return this.articlesService.create(createArticleDto);
   }
 
-  @Get()
   @ApiOkResponse({ type: ArticleEntity, isArray: true })
+  @Get()
   findAll() {
     return this.articlesService.findAll();
   }
